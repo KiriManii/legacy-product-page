@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legacy Agrovet - E-Commerce</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <h1>Legacy Agrovet</h1>
+            <p>Animal Feeds, Pesticides, & More</p>
+        </div>
+        <button id="dark-mode-toggle" title="Toggle Dark Mode">🌙</button>
+        <div class="cart-icon">
+            <img src="assets/icons/cart.svg" alt="Cart" id="cart-icon">
+            <span id="cart-count">0</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="product-gallery">
+            <!-- Product 1 -->
+            <div class="product-item" id="product-1">
+                <div class="image-container" data-large="assets/images/high-res/product-1.jpg">
+                    <img src="assets/images/product-1.jpg" alt="Premium Livestock Feed" class="product-image" />
+                </div>
+                <div class="product-details">
+                    <h3>Premium Livestock Feed (10kg)</h3>
+                    <p class="price">KSh 1,500</p>
+                    <p class="description">A high-quality blend of nutrients for healthy cattle, goats, and sheep.</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-item" id="product-2">
+                <div class="image-container" data-large="assets/images/high-res/product-2.jpg">
+                    <img src="assets/images/product-2.jpg" alt="PestControl Pesticide" class="product-image" />
+                </div>
+                <div class="product-details">
+                    <h3>PestControl Pesticide (500ml)</h3>
+                    <p class="price">KSh 800</p>
+                    <p class="description">Effective pesticide solution to keep pests away from your crops and farm.</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-item" id="product-3">
+                <div class="image-container" data-large="assets/images/high-res/product-3.jpg">
+                    <img src="assets/images/product-3.jpg" alt="Organic Poultry Feed" class="product-image" />
+                </div>
+                <div class="product-details">
+                    <h3>Organic Poultry Feed (5kg)</h3>
+                    <p class="price">KSh 1,000</p>
+                    <p class="description">Organic, GMO-free feed designed for poultry farming.</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-item" id="product-4">
+                <div class="image-container" data-large="assets/images/high-res/product-4.jpg">
+                    <img src="assets/images/product-4.jpg" alt="Herbicide Solution" class="product-image" />
+                </div>
+                <div class="product-details">
+                    <h3>Herbicide Solution (1L)</h3>
+                    <p class="price">KSh 1,200</p>
+                    <p class="description">Kills weeds and unwanted plants, keeping your farm clean and productive.</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 5 -->
+            <div class="product-item" id="product-5">
+                <div class="image-container" data-large="assets/images/high-res/product-5.jpg">
+                    <img src="assets/images/product-5.jpg" alt="Aquatic Fish Food" class="product-image" />
+                </div>
+                <div class="product-details">
+                    <h3>Aquatic Fish Food (1kg)</h3>
+                    <p class="price">KSh 950</p>
+                    <p class="description">Specially formulated feed for pond fish, promoting healthy growth.</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 6 -->
+            <div class="product-item" id="product-6">
+                <div class="image-container" data-large="assets/images/high-res/product-6.jpg">
+                    <img src="assets/images/product-6.jpg" alt="Cow Milking Machine" class="product-image" />
+                </div>
+                <div class="product-details">
+                    <h3>Cow Milking Machine</h3>
+                    <p class="price">KSh 12,000</p>
+                    <p class="description">A high-efficiency milking machine to streamline dairy farm operations.</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 7 -->
+            <div class="product-item" id="product-7">
+                <div class="image-container" data-large="assets/images/high-res/product-7.jpg">
+                    <img src="assets/images/product-7.jpg" alt="High-Yield Fertilizer" class="product-image" />
+                </div>
+                <div class="product-details">
+                    <h3>High-Yield Fertilizer (50kg)</h3>
+                    <p class="price">KSh 3,500</p>
+                    <p class="description">Boost your crop yields with this nutrient-rich fertilizer blend.</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 8 -->
+            <div class="product-item" id="product-8">
+                <div class="image-container" data-large="assets/images/high-res/product-8.jpg">
+                    <img src="assets/images/product-8.jpg" alt="Farm Tools Set (Basic)" class="product-image" />
+                </div>
+                <div class="product-details">
+                    <h3>Farm Tools Set (Basic)</h3>
+                    <p class="price">KSh 2,000</p>
+                    <p class="description">Includes shovels, hoes, and rake—perfect for small-scale farms.</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 9 -->
+            <div class="product-item" id="product-9">
+                <div class="image-container" data-large="assets/images/high-res/product-9.jpg">
+                    <img src="assets/images/product-9.jpg" alt="Bird Nesting Materials" class="product-image" />
+                </div>
+                <div class="product-details">
+                    <h3>Bird Nesting Materials (5kg)</h3>
+                    <p class="price">KSh 500</p>
+                    <p class="description">Provide your birds with everything they need to create a comfortable nest.</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+
+            <!-- Product 10 -->
+            <div class="product-item" id="product-10">
+                <div class="image-container" data-large="assets/images/high-res/product-10.jpg">
+                    <img src="assets/images/product-10.jpg" alt="Electric Fence Charger" class="product-image" />
+                </div>
+                <div class="product-details">
+                    <h3>Electric Fence Charger</h3>
+                    <p class="price">KSh 6,000</p>
+                    <p class="description">Keeps your livestock safely enclosed and protected with minimal energy use.</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Legacy Agrovet | All Rights Reserved</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
