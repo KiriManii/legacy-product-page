@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - Legacy Agrovet</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <h1>Legacy Agrovet</h1>
+            <p>Animal Feeds, Pesticides, & More</p>
+        </div>
+        <button id="dark-mode-toggle" title="Toggle Dark Mode">🌙</button>
+        <div class="cart-icon">
+            <img src="assets/icons/cart.svg" alt="Cart" id="cart-icon">
+            <span id="cart-count">0</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="cart-container">
+            <h2>Your Shopping Cart</h2>
+            <div id="cart-items">
+                <!-- Cart items will be dynamically inserted here -->
+            </div>
+            
+            <div class="cart-summary">
+                <div class="cart-total">
+                    <h3>Order Summary</h3>
+                    <div class="total-row">
+                        <span>Subtotal:</span>
+                        <span id="cart-subtotal">KSh 0</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Shipping:</span>
+                        <span id="cart-shipping">KSh 200</span>
+                    </div>
+                    <div class="total-row total-final">
+                        <span>Total:</span>
+                        <span id="cart-total">KSh 0</span>
+                    </div>
+                </div>
+                <button id="checkout-button" class="checkout-btn">Proceed to Checkout</button>
+                <a href="index.html" class="continue-shopping">Continue Shopping</a>
+            </div>
+            
+            <div id="empty-cart-message" class="hidden">
+                <h3>Your cart is empty</h3>
+                <p>Looks like you haven't added any products to your cart yet.</p>
+                <a href="index.html" class="continue-shopping">Continue Shopping</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Legacy Agrovet | All Rights Reserved</p>
+    </footer>
+
+    <!-- Cart Item Template (Hidden) -->
+    <template id="cart-item-template">
+        <div class="cart-item">
+            <div class="cart-item-image">
+                <img src="" alt="Product Image">
+            </div>
+            <div class="cart-item-details">
+                <h3 class="cart-item-name"></h3>
+                <p class="cart-item-price"></p>
+                <div class="cart-item-controls">
+                    <button class="quantity-btn decrease">-</button>
+                    <span class="item-quantity">1</span>
+                    <button class="quantity-btn increase">+</button>
+                    <button class="remove-item">Remove</button>
+                </div>
+            </div>
+            <div class="cart-item-total">
+                <p>Item Total:</p>
+                <p class="item-total-price"></p>
+            </div>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>
