@@ -3,15 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Cart - Legacy Agrovet</title>
+    <title>Shopping Cart - Legacy Trading Solutions</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <style>
+        .cart-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .cart-header {
+            display: grid;
+            grid-template-columns: 3fr 1fr 1fr 1fr;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--light-border);
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .cart-item {
+            display: grid;
+            grid-template-columns: 3fr 1fr 1fr 1fr;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--light-border);
+            align-items: center;
+        }
+        
+        .cart-product {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .cart-product img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid var(--light-border);
+            background-color: var(--light-text);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .quantity-btn:hover {
+            background-color: var(--gray-bg);
+        }
+        
+        .cart-summary {
+            margin-top: 2rem;
+            background-color: var(--gray-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .checkout-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .continue-shopping {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--gray-bg);
+            color: var(--dark-text);
+            text-decoration: none;
+            border-radius: 30px;
+            transition: background-color 0.3s;
+        }
+        
+        .continue-shopping:hover {
+            background-color: var(--light-border);
+        }
+        
+        .remove-item {
+            color: #ff3b30;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-decoration: underline;
+            transition: opacity 0.3s;
+        }
+        
+        .remove-item:hover {
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            .cart-header {
+                display: none;
+            }
+            
+            .cart-item {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 1.5rem 0;
+            }
+            
+            .cart-product {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .cart-quantity, .cart-price, .cart-subtotal {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .cart-quantity::before {
+                content: "Quantity:";
+                font-weight: bold;
+            }
+            
+            .cart-price::before {
+                content: "Price:";
+                font-weight: bold;
+            }
+            
+            .cart-subtotal::before {
+                content: "Subtotal:";
+                font-weight: bold;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="logo">
-            <h1>Legacy Agrovet</h1>
-            <p>Animal Feeds, Pesticides, & More</p>
+            <img src="assets/images/logo.png" alt="Legacy Trading Solutions Logo" class="logo-image">
+            <div class="logo-text">
+                <h1>Legacy Trading Solutions</h1>
+                <p>Great Harvests, Healthy Animals</p>
+            </div>
         </div>
         <button id="dark-mode-toggle" title="Toggle Dark Mode">🌙</button>
         <div class="cart-icon">
@@ -22,68 +198,217 @@
 
     <!-- Main Content -->
     <main>
-        <section class="cart-container">
+        <div class="cart-container">
             <h2>Your Shopping Cart</h2>
+            
             <div id="cart-items">
-                <!-- Cart items will be dynamically inserted here -->
+                <!-- Cart items will be dynamically added here -->
             </div>
             
-            <div class="cart-summary">
+            <div id="cart-summary" class="cart-summary">
                 <div class="cart-total">
-                    <h3>Order Summary</h3>
-                    <div class="total-row">
-                        <span>Subtotal:</span>
-                        <span id="cart-subtotal">KSh 0</span>
-                    </div>
-                    <div class="total-row">
-                        <span>Shipping:</span>
-                        <span id="cart-shipping">KSh 200</span>
-                    </div>
-                    <div class="total-row total-final">
-                        <span>Total:</span>
-                        <span id="cart-total">KSh 0</span>
-                    </div>
+                    <span>Total:</span>
+                    <span id="cart-total-amount">KSh 0</span>
                 </div>
-                <button id="checkout-button" class="checkout-btn">Proceed to Checkout</button>
-                <a href="index.html" class="continue-shopping">Continue Shopping</a>
+                <button id="checkout-btn" class="checkout-btn">Proceed to Checkout</button>
             </div>
             
-            <div id="empty-cart-message" class="hidden">
+            <div id="empty-cart" class="empty-cart" style="display: none;">
                 <h3>Your cart is empty</h3>
                 <p>Looks like you haven't added any products to your cart yet.</p>
                 <a href="index.html" class="continue-shopping">Continue Shopping</a>
             </div>
-        </section>
+        </div>
     </main>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Legacy Agrovet | All Rights Reserved</p>
+        <p>&copy; 2025 Legacy Trading Solutions | All Rights Reserved</p>
     </footer>
 
-    <!-- Cart Item Template (Hidden) -->
-    <template id="cart-item-template">
-        <div class="cart-item">
-            <div class="cart-item-image">
-                <img src="" alt="Product Image">
-            </div>
-            <div class="cart-item-details">
-                <h3 class="cart-item-name"></h3>
-                <p class="cart-item-price"></p>
-                <div class="cart-item-controls">
-                    <button class="quantity-btn decrease">-</button>
-                    <span class="item-quantity">1</span>
-                    <button class="quantity-btn increase">+</button>
-                    <button class="remove-item">Remove</button>
-                </div>
-            </div>
-            <div class="cart-item-total">
-                <p>Item Total:</p>
-                <p class="item-total-price"></p>
-            </div>
-        </div>
-    </template>
+    <script>
+        // DOM Elements
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartSummary = document.getElementById('cart-summary');
+        const emptyCartMessage = document.getElementById('empty-cart');
+        const cartTotalAmount = document.getElementById('cart-total-amount');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const cartCount = document.getElementById('cart-count');
 
-    <script src="script.js"></script>
+        // Cart Data
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        // Dark Mode Functionality
+        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme === 'dark' || (!currentTheme && prefersDarkMode.matches)) {
+            document.body.classList.add('dark-mode');
+            darkModeToggle.textContent = '☀️';
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
+            
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+        });
+
+        // Render Cart Items
+        function renderCart() {
+            // Update cart count
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            if (totalItems > 0) {
+                cartCount.style.display = 'flex';
+            } else {
+                cartCount.style.display = 'none';
+            }
+            
+            // Show empty cart message if cart is empty
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '';
+                cartSummary.style.display = 'none';
+                emptyCartMessage.style.display = 'block';
+                return;
+            }
+            
+            // Hide empty cart message and show cart summary
+            emptyCartMessage.style.display = 'none';
+            cartSummary.style.display = 'block';
+            
+            // Create cart header
+            let cartHTML = `
+                <div class="cart-header">
+                    <div>Product</div>
+                    <div>Price</div>
+                    <div>Quantity</div>
+                    <div>Subtotal</div>
+                </div>
+            `;
+            
+            // Calculate total price
+            let totalPrice = 0;
+            
+            // Add cart items
+            cart.forEach(item => {
+                // Extract numeric price value
+                const priceText = item.price.replace('KSh ', '').replace(',', '');
+                const priceValue = parseFloat(priceText);
+                const itemTotal = priceValue * item.quantity;
+                totalPrice += itemTotal;
+                
+                cartHTML += `
+                    <div class="cart-item" data-id="${item.id}">
+                        <div class="cart-product">
+                            <img src="${item.image}" alt="${item.name}">
+                            <div>
+                                <h3>${item.name}</h3>
+                                <button class="remove-item" data-id="${item.id}">Remove</button>
+                            </div>
+                        </div>
+                        <div class="cart-price">${item.price}</div>
+                        <div class="cart-quantity">
+                            <div class="quantity-controls">
+                                <button class="quantity-btn decrease" data-id="${item.id}">-</button>
+                                <span>${item.quantity}</span>
+                                <button class="quantity-btn increase" data-id="${item.id}">+</button>
+                            </div>
+                        </div>
+                        <div class="cart-subtotal">KSh ${itemTotal.toLocaleString()}</div>
+                    </div>
+                `;
+            });
+            
+            // Update cart items and total amount
+            cartItemsContainer.innerHTML = cartHTML;
+            cartTotalAmount.textContent = `KSh ${totalPrice.toLocaleString()}`;
+            
+            // Add event listeners to buttons
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', removeItem);
+            });
+            
+            document.querySelectorAll('.quantity-btn.decrease').forEach(button => {
+                button.addEventListener('click', decreaseQuantity);
+            });
+            
+            document.querySelectorAll('.quantity-btn.increase').forEach(button => {
+                button.addEventListener('click', increaseQuantity);
+            });
+        }
+        
+        // Remove item from cart
+        function removeItem(e) {
+            const itemId = e.target.getAttribute('data-id');
+            cart = cart.filter(item => item.id !== itemId);
+            
+            // Save cart to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Re-render cart
+            renderCart();
+        }
+        
+        // Decrease item quantity
+        function decreaseQuantity(e) {
+            const itemId = e.target.getAttribute('data-id');
+            const itemIndex = cart.findIndex(item => item.id === itemId);
+            
+            if (itemIndex > -1) {
+                if (cart[itemIndex].quantity > 1) {
+                    cart[itemIndex].quantity -= 1;
+                } else {
+                    cart.splice(itemIndex, 1);
+                }
+                
+                // Save cart to localStorage
+                localStorage.setItem('cart', JSON.stringify(cart));
+                
+                // Re-render cart
+                renderCart();
+            }
+        }
+        
+        // Increase item quantity
+        function increaseQuantity(e) {
+            const itemId = e.target.getAttribute('data-id');
+            const itemIndex = cart.findIndex(item => item.id === itemId);
+            
+            if (itemIndex > -1) {
+                cart[itemIndex].quantity += 1;
+                
+                // Save cart to localStorage
+                localStorage.setItem('cart', JSON.stringify(cart));
+                
+                // Re-render cart
+                renderCart();
+            }
+        }
+        
+        // Checkout button click
+        checkoutBtn.addEventListener('click', () => {
+            alert('Thank you for your order! Checkout functionality will be implemented soon.');
+            
+            // Clear cart
+            cart = [];
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Re-render cart
+            renderCart();
+        });
+        
+        // Cart icon click - redundant in cart page but keeping for consistency
+        document.getElementById('cart-icon').addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent navigation since we're already on cart page
+        });
+        
+        // Initialize page
+        renderCart();
+    </script>
 </body>
 </html>
